@@ -60,7 +60,7 @@ extern struct device_attribute dev_attr_usbip_debug;
 
 #define usbip_dbg_with_flag(flag, fmt, args...)		\
 	do {						\
-		if (flag & usbip_debug_flag)		\
+	  if (true || (flag & usbip_debug_flag))	\
 			pr_debug(fmt, ##args);		\
 	} while (0)
 
@@ -327,12 +327,16 @@ static inline int interface_to_busnum(struct usb_interface *interface)
 {
 	struct usb_device *udev = interface_to_usbdev(interface);
 
+	printk(KERN_INFO "USB Interface to busnum: %d\n", udev->bus->busnum);
+
 	return udev->bus->busnum;
 }
 
 static inline int interface_to_devnum(struct usb_interface *interface)
 {
 	struct usb_device *udev = interface_to_usbdev(interface);
+
+	printk(KERN_INFO "USB Interface to devnum: %d\n", udev->devnum);
 
 	return udev->devnum;
 }

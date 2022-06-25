@@ -299,6 +299,9 @@ static inline void hub_descriptor(struct usb_hub_descriptor *desc)
 {
 	int width;
 
+	printk(KERN_INFO "USB hubdescriptor\n");
+
+
 	memset(desc, 0, sizeof(*desc));
 	desc->bDescriptorType = USB_DT_HUB;
 	desc->wHubCharacteristics = cpu_to_le16(
